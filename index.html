@@ -16,6 +16,9 @@
       padding: 10px;
       width: 80%;
       font-size: 18px;
+      border: 1px solid lime;
+      background: #111;
+      color: #0f0;
     }
 
     button {
@@ -23,9 +26,15 @@
       font-size: 18px;
       margin: 10px;
       background: lime;
+      color: black;
       border: none;
       border-radius: 6px;
       cursor: pointer;
+    }
+
+    button:disabled {
+      background: gray;
+      cursor: not-allowed;
     }
 
     #output {
@@ -42,8 +51,8 @@
   <h1>Jasteb Ress Kenceng 💥</h1>
   <input id="teks" placeholder="Masukin teks spam di sini..." />
   <br />
-  <button onclick="mulaiSpam()">Mulai Jasteb</button>
-  <button onclick="berhenti()">Stop</button>
+  <button id="btnMulai" onclick="mulaiSpam()">Mulai Jasteb</button>
+  <button id="btnStop" onclick="berhenti()" disabled>Stop</button>
 
   <div id="output"></div>
 
@@ -51,21 +60,28 @@
     let interval;
 
     function mulaiSpam() {
-      const teks = document.getElementById("teks").value;
+      const teks = document.getElementById("teks").value.trim();
       const output = document.getElementById("output");
+      const btnMulai = document.getElementById("btnMulai");
+      const btnStop = document.getElementById("btnStop");
 
       if (!teks) return alert("Tulis dulu teksnya, bro!");
+
+      btnMulai.disabled = true;
+      btnStop.disabled = false;
 
       interval = setInterval(() => {
         const span = document.createElement("div");
         span.textContent = teks + " 💨";
         output.appendChild(span);
         output.scrollTop = output.scrollHeight;
-      }, 50); // kecepatan spam
+      }, 50);
     }
 
     function berhenti() {
       clearInterval(interval);
+      document.getElementById("btnMulai").disabled = false;
+      document.getElementById("btnStop").disabled = true;
     }
   </script>
 </body>
