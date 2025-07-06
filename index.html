@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <title>Jasteb Ress Kenceng 🚀</title>
+  <style>
+    body {
+      background: #000;
+      color: #0f0;
+      font-family: monospace;
+      text-align: center;
+      padding: 50px;
+    }
+
+    input {
+      padding: 10px;
+      width: 80%;
+      font-size: 18px;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 18px;
+      margin: 10px;
+      background: lime;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    #output {
+      margin-top: 30px;
+      height: 300px;
+      overflow-y: auto;
+      background: #111;
+      border: 1px solid lime;
+      padding: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Jasteb Ress Kenceng 💥</h1>
+  <input id="teks" placeholder="Masukin teks spam di sini..." />
+  <br />
+  <button onclick="mulaiSpam()">Mulai Jasteb</button>
+  <button onclick="berhenti()">Stop</button>
+
+  <div id="output"></div>
+
+  <script>
+    let interval;
+
+    function mulaiSpam() {
+      const teks = document.getElementById("teks").value;
+      const output = document.getElementById("output");
+
+      if (!teks) return alert("Tulis dulu teksnya, bro!");
+
+      interval = setInterval(() => {
+        const span = document.createElement("div");
+        span.textContent = teks + " 💨";
+        output.appendChild(span);
+        output.scrollTop = output.scrollHeight;
+      }, 50); // kecepatan spam
+    }
+
+    function berhenti() {
+      clearInterval(interval);
+    }
+  </script>
+</body>
+</html>
